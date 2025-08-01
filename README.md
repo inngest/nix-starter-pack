@@ -8,9 +8,10 @@ This repo is a starter pack for folks interested in using Nix for,
 
 etc.
 
-The default `flake.nix` can be used as is if you just want to bare minimum.
+The default `flake.nix` can be used as is if you just want the bare minimum.
+It's pre-configured with some useful tools that can help with day to day work.
 
-*NOTE*
+**NOTE**
 
 This guide is meant for macOS users considering we default to macOS laptops.
 Linux users should reference the NixOS guides.
