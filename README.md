@@ -36,6 +36,12 @@ Run the following to make sure configuration is on that expected path for Nix to
 sudo ln -s ~/_config /etc/nix-darwin
 ```
 
+The make sure to run this command to update the hostname reference.
+
+``` sh
+sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
+```
+
 ## Build
 
 Run the following to start the build.
