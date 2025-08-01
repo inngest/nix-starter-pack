@@ -31,10 +31,17 @@ It's essentially just an installer for Nix itself.
 
 ## Setup the configuration
 
+Clone this repo.
+
+```
+git clone https://github.com/inngest/nix-starter-pack ~/nix-darwin
+cd ~/nix-darwin
+```
+
 Run the following to make sure configuration is on that expected path for Nix to read.
 
 ``` sh
-sudo ln -s ~/_config /etc/nix-darwin
+sudo ln -s $(pwd) /etc/nix-darwin
 ```
 
 The make sure to run this command to update the hostname reference.
