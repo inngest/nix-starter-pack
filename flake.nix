@@ -42,12 +42,84 @@
         # Enable alternative shell support in nix-darwin.
         # programs.fish.enable = true;
 
-        # Set Git commit hash for darwin-version.
-        system.configurationRevision = self.rev or self.dirtyRev or null;
+        system = {
+          # Set Git commit hash for darwin-version.
+          configurationRevision = self.rev or self.dirtyRev or null;
 
-        # Used for backwards compatibility, please read the changelog before changing.
-        # $ darwin-rebuild changelog
-        system.stateVersion = 6;
+          # Used for backwards compatibility, please read the changelog before changing.
+          # $ darwin-rebuild changelog
+          stateVersion = 6;
+
+          # NOTE: uncomment the following if you want to use nix to control certain
+          # laptop settings
+          # defaults = {
+          #   dock = {
+          #     autohide = true;
+          #     magnification = true;
+          #   };
+          #
+          #   spaces.spans-displays = true;
+          #
+          #   NSGlobalDomain = {
+          #     # Shortest value based on
+          #     # defaults read NSGlobalDomain InitialKeyRepeat
+          #     InitialKeyRepeat = 15;
+          #     KeyRepeat = 2;
+          #
+          #     "com.apple.mouse.tapBehavior" = 1; # Enable tap to click
+          #     "com.apple.trackpad.scaling" = 2.0;
+          #   };
+          #
+          #   controlcenter = { BatteryShowPercentage = true; };
+          #   loginwindow = { GuestEnabled = false; };
+          #   trackpad.Clicking = true;
+          # };
+          #
+          # # Remaps
+          # keyboard = {
+          #   enableKeyMapping = true;
+          #   remapCapsLockToControl = true;
+          # };
+
+        };
+
+        # NOTE: Uncomment the following to use nix to control Homebrew.
+        # This still requires installing Homebrew separately first from https://brew.sh/
+        # homebrew = {
+        #   enable = true;
+        #   onActivation = {
+        #     autoUpdate = true;
+        #     cleanup = "uninstall";
+        #   };
+        #
+        #   taps = [ ];
+        #   brews = [ "watch" ];
+        #   casks = [
+        #     # Terminal
+        #     "ghostty"
+        #     "kitty"
+        #     "alacritty"
+        #
+        #     # Browwer
+        #     "google-chrome"
+        #     "firefox@developer-edition"
+        #     "brave-browser"
+        #
+        #     # Chat
+        #     "discord"
+        #
+        #     # Tool
+        #     "1password"
+        #     "1password-cli"
+        #     "docker"
+        #     "docker-desktop"
+        #
+        #     # Development
+        #     "visual-studio-code"
+        #   ];
+        #
+        #   masApps = { };
+        # };
 
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin";
