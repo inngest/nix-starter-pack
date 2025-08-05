@@ -5,9 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
     let
       configuration = { pkgs, ... }: {
         # List packages installed in system profile. To search by name, run:
@@ -38,6 +40,7 @@
 
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
+        nix.enable = false;
 
         # Enable alternative shell support in nix-darwin.
         # programs.fish.enable = true;
@@ -123,11 +126,37 @@
 
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin";
+
+        # Enable Home Manager
+        users.users.jakobevangelista = {
+          name = "jakobevangelista";
+          home = "/Users/jakobevangelista";
+        };
+
+        # Add Home Manager configuration
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.jakobevangelista = { pkgs, ... }: {
+            home.stateVersion = "25.05";
+            
+            # Enable direnv
+            programs.direnv = {
+              enable = true;
+              nix-direnv.enable = true;
+            };
+          };
+        };
       };
     in {
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#simple
-      darwinConfigurations."simple" =
-        nix-darwin.lib.darwinSystem { modules = [ configuration ]; };
+      # $ darwin-rebuild build --flake .#jakobs-goated-inngest-macbook
+      darwinConfigurations."jakobs-goated-inngest-macbook" =
+        nix-darwin.lib.darwinSystem { 
+          modules = [ 
+            configuration 
+            home-manager.darwinModules.home-manager
+          ]; 
+        };
     };
 }
