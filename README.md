@@ -85,3 +85,14 @@ Whenever you made a change to `flake.nix`, make sure to run the command above to
 ## Documentation
 
 You can either run `darwin-help` to see the docs in terminal or check it online [here](https://nix-darwin.github.io/nix-darwin/manual/index.html).
+
+## NOTE
+
+If you like this and want to expand on customizing your configuration, make sure to remove this repo from your origin.
+
+```
+git remote remove origin
+```
+
+And then create a configuration repo of your own.
+This is meant to be a starter pack so there should'nt be any personalized configuration in it.
