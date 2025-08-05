@@ -44,18 +44,37 @@ Run the following to make sure configuration is on that expected path for Nix to
 sudo ln -s $(pwd) /etc/nix-darwin
 ```
 
-The make sure to run this command to update the hostname reference.
+The make sure to run this command to update the hostname and username reference.
 
 ``` sh
-sed -i '' "s/simple/$(scutil --get LocalHostName)/" flake.nix
+sed -i '' "s/workstation-name/$(scutil --get LocalHostName)/" flake.nix
+sed -i '' "s/workstation-username/$(whoami)/" flake.nix
 ```
 
 ## Build
 
-Run the following to start the build.
+Run the following to start the build, which should setup the Nix system for your laptop.
 
 ``` sh
-darwin-rebuild switch
+sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
+```
+
+Then add the following to your `~/.zshrc`.
+
+``` bash
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
+direnvPath=$(which direnv)
+eval "$(${direnvPath} hook zsh)"
+```
+And then open a new terminal session or run `source ~/.zshrc` to load the config.
+
+You should now have a functioning Nix system working.
+
+Going forward, you can just use the following command for rebuilds.
+
+``` sh
+sudo darwin-rebuild switch
 ```
 
 Whenever you made a change to `flake.nix`, make sure to run the command above to rebuild the system.

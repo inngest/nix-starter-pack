@@ -128,9 +128,9 @@
         nixpkgs.hostPlatform = "aarch64-darwin";
 
         # Enable Home Manager
-        users.users.jakobevangelista = {
-          name = "jakobevangelista";
-          home = "/Users/jakobevangelista";
+        users.users.workstation-username = {
+          name = "workstation-username";
+          home = "/Users/workstation-username";
         };
 
         # Add Home Manager configuration
@@ -139,7 +139,7 @@
           useUserPackages = true;
           users.jakobevangelista = { pkgs, ... }: {
             home.stateVersion = "25.05";
-            
+
             # Enable direnv
             programs.direnv = {
               enable = true;
@@ -150,13 +150,9 @@
       };
     in {
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#jakobs-goated-inngest-macbook
-      darwinConfigurations."jakobs-goated-inngest-macbook" =
-        nix-darwin.lib.darwinSystem { 
-          modules = [ 
-            configuration 
-            home-manager.darwinModules.home-manager
-          ]; 
-        };
+      # $ darwin-rebuild build --flake .#workstation-name
+      darwinConfigurations."workstation-name" = nix-darwin.lib.darwinSystem {
+        modules = [ configuration home-manager.darwinModules.home-manager ];
+      };
     };
 }
