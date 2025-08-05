@@ -67,7 +67,9 @@ Then add the following to your `~/.zshrc`.
 direnvPath=$(which direnv)
 eval "$(${direnvPath} hook zsh)"
 ```
-And then open a new terminal session or run `source ~/.zshrc` to load the config.
+And then open a new terminal session to load the config.
+
+NOTE: Nix home-manager also have the capability to control `.zshrc` settings as well, so you are able to skip the step above if you use that instead.
 
 You should now have a functioning Nix system working.
 
