@@ -137,7 +137,7 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.workstation-user = { pkgs, ... }: {
+          users.workstation-username = { pkgs, ... }: {
             home.stateVersion = "25.05";
 
             # Enable direnv
