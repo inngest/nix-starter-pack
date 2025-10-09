@@ -81,7 +81,7 @@ direnv hook fish | source
 
 And then open a new terminal session to load the config.
 
-NOTE: Nix home-manager also have the capability to control `.zshrc` settings as well, so you are able to skip the step above if you use that instead.
+NOTE: Nix home-manager also have the capability to control shell settings as well, so you are able to skip the step above if you use that instead.
 
 You should now have a functioning Nix system working.
 
