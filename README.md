@@ -59,7 +59,9 @@ Run the following to start the build, which should setup the Nix system for your
 sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
 ```
 
-Then add the following to your `~/.zshrc`.
+### zsh
+
+Add the following to your `~/.zshrc`.
 
 ``` bash
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -67,9 +69,19 @@ Then add the following to your `~/.zshrc`.
 direnvPath=$(which direnv)
 eval "$(${direnvPath} hook zsh)"
 ```
+
+### fish
+
+Add the following to your `~/.config/fish/config.fish`
+
+``` fish
+. /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+direnv hook fish | source
+```
+
 And then open a new terminal session to load the config.
 
-NOTE: Nix home-manager also have the capability to control `.zshrc` settings as well, so you are able to skip the step above if you use that instead.
+NOTE: Nix home-manager also have the capability to control shell settings as well, so you are able to skip the step above if you use that instead.
 
 You should now have a functioning Nix system working.
 
