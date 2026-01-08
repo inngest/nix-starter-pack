@@ -56,7 +56,7 @@ sed -i '' "s/workstation-username/$(whoami)/" flake.nix
 Run the following to start the build, which should setup the Nix system for your laptop.
 
 ``` sh
-sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch
+sudo nix run nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch
 ```
 
 ### zsh
