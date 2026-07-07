@@ -59,7 +59,7 @@
 
             # Used for backwards compatibility, please read the changelog before changing.
             # $ darwin-rebuild changelog
-            stateVersion = 6;
+            stateVersion = 7;
 
             # NOTE: uncomment the following if you want to use nix to control certain
             # laptop settings
